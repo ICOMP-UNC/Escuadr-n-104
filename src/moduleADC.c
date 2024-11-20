@@ -81,7 +81,6 @@ void TIMER0_IRQHandler()
 void ADC_IRQHandler()
 {
     NVIC_DisableIRQ(ADC_IRQn); /**< Deshabilita la interrupción del ADC temporalmente */
-    while (!(ADC_ChannelGetStatus(LPC_ADC, ADC_CHANNEL_0, ADC_DATA_DONE))); /**< Espera a que finalice la conversión */
     adc_read_value = ADC_ChannelGetData(LPC_ADC, ADC_CHANNEL_0); /**< Lee el valor de la conversión del ADC */
     continue_reverse();
     swap_table(table);
