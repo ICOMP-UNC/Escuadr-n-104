@@ -9,15 +9,15 @@
 #ifndef MODULE_EINT_H
 #define MODULE_EINT_H
 
+#include "lpc17xx_dac.h"
 #include "lpc17xx_exti.h"
 #include "lpc17xx_gpdma.h"
+#include "lpc17xx_nvic.h"
 #include "lpc17xx_systick.h"
 #include "lpc17xx_timer.h"
-#include <stdint.h>
-#include "lpc17xx_nvic.h"
-#include <stddef.h>
 #include "modulePort.h"
-#include "lpc17xx_dac.h"
+#include <stddef.h>
+#include <stdint.h>
 
 extern volatile uint8_t habilitar;
 
@@ -46,4 +46,3 @@ void configure_external_interrupt(void);
 void EINT0_IRQHandler(void);
 
 #endif // MODULE_EINT_H
-

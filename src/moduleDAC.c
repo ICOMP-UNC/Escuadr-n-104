@@ -13,7 +13,7 @@ volatile uint32_t dac_value2[NUM_SAMPLES] = {800, 800, 800, 800};
 void configure_dac(void)
 {
     DAC_CONVERTER_CFG_Type DAC_Struct; /**< Estructura de configuración del DAC */
-    uint32_t update_interval;         /**< Intervalo de actualización entre muestras */
+    uint32_t update_interval;          /**< Intervalo de actualización entre muestras */
 
     // Configuración del DAC
     DAC_Struct.DBLBUF_ENA = RESET; /**< Deshabilitar doble buffer */
@@ -38,18 +38,18 @@ void configure_dac(void)
  *
  * @param[in] table Puntero a la tabla de datos que contiene las muestras de la onda.
  */
-void configure_dma_for_dac(volatile uint32_t *table)
+void configure_dma_for_dac(volatile uint32_t* table)
 {
     GPDMA_LLI_Type DMA_LLI_Struct; /**< Elemento de lista enlazada DMA para transferencia continua */
 
     // Configurar la lista enlazada DMA para transferencia continua
     DMA_LLI_Struct.SrcAddr = (uint32_t)table;              /**< Dirección fuente: tabla de la onda */
-    DMA_LLI_Struct.DstAddr = (uint32_t)&(LPC_DAC->DACR);   /**< Dirección destino: registro del DAC */
+    DMA_LLI_Struct.DstAddr = (uint32_t) & (LPC_DAC->DACR); /**< Dirección destino: registro del DAC */
     DMA_LLI_Struct.NextLLI = (uint32_t)&DMA_LLI_Struct;    /**< Enlace al mismo elemento para transferencia continua */
-    DMA_LLI_Struct.Control = DMA_SIZE                     /**< Tamaño de la transferencia */
-                             | (2 << 18)                  /**< Ancho de origen: 32 bits */
-                             | (2 << 21)                  /**< Ancho de destino: 32 bits */
-                             | (1 << 26);                 /**< Incrementar la dirección de origen */
+    DMA_LLI_Struct.Control = DMA_SIZE                      /**< Tamaño de la transferencia */
+                             | (2 << 18)                   /**< Ancho de origen: 32 bits */
+                             | (2 << 21)                   /**< Ancho de destino: 32 bits */
+                             | (1 << 26);                  /**< Incrementar la dirección de origen */
 
     // Inicializar el módulo DMA
     GPDMA_Init();
@@ -57,24 +57,28 @@ void configure_dma_for_dac(volatile uint32_t *table)
     GPDMA_Channel_CFG_Type GPDMACfg; /**< Estructura de configuración del canal DMA */
 
     // Configuración del canal DMA para transferencia memoria a periférico
-    GPDMACfg.ChannelNum = CHANNEL_DMA_DAC;         /**< Canal 0 */
-    GPDMACfg.SrcMemAddr = (uint32_t)table;         /**< Dirección fuente: tabla de la onda */
-    GPDMACfg.DstMemAddr = 0;                       /**< Sin dirección destino en memoria (periférico) */
-    GPDMACfg.TransferSize = DMA_SIZE;              /**< Tamaño de la transferencia: 60 muestras */
-    GPDMACfg.TransferWidth = 0;                    /**< No se utiliza */
+    GPDMACfg.ChannelNum = CHANNEL_DMA_DAC;          /**< Canal 0 */
+    GPDMACfg.SrcMemAddr = (uint32_t)table;          /**< Dirección fuente: tabla de la onda */
+    GPDMACfg.DstMemAddr = 0;                        /**< Sin dirección destino en memoria (periférico) */
+    GPDMACfg.TransferSize = DMA_SIZE;               /**< Tamaño de la transferencia: 60 muestras */
+    GPDMACfg.TransferWidth = 0;                     /**< No se utiliza */
     GPDMACfg.TransferType = GPDMA_TRANSFERTYPE_M2P; /**< Transferencia memoria a periférico */
-    GPDMACfg.SrcConn = 0;                          /**< Fuente es memoria */
-    GPDMACfg.DstConn = GPDMA_CONN_DAC;             /**< Destino: conexión del DAC */
-    GPDMACfg.DMALLI = (uint32_t)&DMA_LLI_Struct;   /**< Lista enlazada para transferencia continua */
+    GPDMACfg.SrcConn = 0;                           /**< Fuente es memoria */
+    GPDMACfg.DstConn = GPDMA_CONN_DAC;              /**< Destino: conexión del DAC */
+    GPDMACfg.DMALLI = (uint32_t)&DMA_LLI_Struct;    /**< Lista enlazada para transferencia continua */
 
     // Aplicar la configuración del DMA
     GPDMA_Setup(&GPDMACfg);
 }
-void actualizar_dac(volatile uint32_t *dac_value){
-	dac_counter++;
-	if(reverse_flag==TRUE){
+void actualizar_dac(volatile uint32_t* dac_value)
+{
+    dac_counter++;
+    if (reverse_flag == TRUE)
+    {
         dac_value = dac_value1;
-	} else {
+    }
+    else
+    {
         dac_value = dac_value2;
-	}
+    }
 }

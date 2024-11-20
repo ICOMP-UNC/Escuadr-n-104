@@ -10,24 +10,26 @@
 
 #include "lpc17xx_gpio.h"
 #include "lpc17xx_pinsel.h"
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
-#define INPUT 0
+#define INPUT  0
 #define OUTPUT 1
 
-#define MANUAL_MODO_PIN     ((uint32_t)(1 << 10)) /**< EINT0 en el pin 2.10, entrada - función 1 */
-#define MOTION_SENSOR_PIN   ((uint32_t)(1 << 23)) /**< ADC en el pin 0.23, entrada - función 1 */
+#define MANUAL_MODO_PIN   ((uint32_t)(1 << 10)) /**< EINT0 en el pin 2.10, entrada - función 1 */
+#define MOTION_SENSOR_PIN ((uint32_t)(1 << 23)) /**< ADC en el pin 0.23, entrada - función 1 */
 
 /** LEDs de asistencia para estacionamiento */
-#define GREEN_LED_PIN       ((uint32_t)(1 << 4))  /**< LED verde controlado por Systick (continúe), pin 0.7, salida - función 0 */
-#define RED_LED_PIN         ((uint32_t)(1 << 5))  /**< LED rojo controlado por Systick (deténgase), pin 0.8, salida - función 0 */
+#define GREEN_LED_PIN                                                                                                  \
+    ((uint32_t)(1 << 4)) /**< LED verde controlado por Systick (continúe), pin 0.7, salida - función 0 */
+#define RED_LED_PIN                                                                                                    \
+    ((uint32_t)(1 << 5)) /**< LED rojo controlado por Systick (deténgase), pin 0.8, salida - función 0 */
 
-#define BUFFER_PIN          ((uint32_t)(1 << 26)) /**< DAC para bocina con dos tipos de pitidos, pin 0.26, salida - función 2 */
+#define BUFFER_PIN ((uint32_t)(1 << 26)) /**< DAC para bocina con dos tipos de pitidos, pin 0.26, salida - función 2  \
+                                          */
 
-#define TX_PIN              ((uint32_t)(1 << 2))  /**< Pin de transmisión UART en 0.2, salida - función 1 */
-#define RX_PIN            ((uint32_t)(1 << 3))  /**< Pin de recepción UART en 0.3, entrada - función 1 */
-
+#define TX_PIN ((uint32_t)(1 << 2)) /**< Pin de transmisión UART en 0.2, salida - función 1 */
+#define RX_PIN ((uint32_t)(1 << 3)) /**< Pin de recepción UART en 0.3, entrada - función 1 */
 
 /**
  * @brief Configura los puertos necesarios para el funcionamiento del sistema.
@@ -42,7 +44,3 @@
 void configure_port(void);
 
 #endif
-
-
-
-

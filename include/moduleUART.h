@@ -2,12 +2,12 @@
 #define MODULEUART_H
 
 #include "lpc17xx_uart.h"
-#include <stdint.h>
-#include <string.h>
-#include <stddef.h>
-#include "moduleSystick.h"
 #include "moduleEINT.h"
+#include "moduleSystick.h"
+#include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 /**
  * @file moduleUART.h
@@ -29,7 +29,7 @@ void conf_UART(void);
  *
  * @param data Cadena de caracteres a enviar.
  */
-void enviar_UART(volatile uint8_t *data);
+void enviar_UART(volatile uint8_t* data);
 
 /**
  * @brief Envía el valor del ADC por UART.

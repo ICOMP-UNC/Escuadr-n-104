@@ -1,27 +1,26 @@
 #ifndef MODULEADC_H
 #define MODULEADC_H
 
-#include "moduleDAC.h"
 #include "lpc17xx_adc.h"
-#include "lpc17xx_timer.h"
 #include "lpc17xx_nvic.h"
-#include <stdint.h>
-#include <stddef.h>
+#include "lpc17xx_timer.h"
+#include "moduleDAC.h"
 #include "moduleSystick.h"
-
+#include <stddef.h>
+#include <stdint.h>
 
 /** Constantes y definiciones relacionadas con la configuración del ADC.
  *  @{
  */
-#define SECOND 10000
-#define ADC_FREQ 100000
+#define SECOND                     10000
+#define ADC_FREQ                   100000
 #define MAX_APROXIMACION_PERMITIDA 2048
-#define NUM_SAMPLES 4
+#define NUM_SAMPLES                4
 
 extern volatile uint32_t table[NUM_SAMPLES];
 
 extern volatile uint32_t adc_read_value; ///< Último valor leído del ADC.
-//extern volatile uint8_t reverse_flag;    ///< Indica el modo de operación: 1 (reversa) o 0 (normal). 
+// extern volatile uint8_t reverse_flag;    ///< Indica el modo de operación: 1 (reversa) o 0 (normal).
 
 /**
  * @file moduleADC.h
@@ -76,6 +75,5 @@ void ADC_IRQHandler(void);
 void continue_reverse(void);
 
 void swap_table(volatile uint32_t* table);
-
 
 #endif // MODULEADC_H

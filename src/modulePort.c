@@ -17,21 +17,22 @@
  * - UART (TX y RX)
  * - Otros periféricos como el DAC y ADC.
  */
-void configure_port(void) {
+void configure_port(void)
+{
     PINSEL_CFG_Type pin_cfg;
 
     // Configuración del pin para EINT0 (Interrupción externa 0)
     pin_cfg.Portnum = PINSEL_PORT_2;
     pin_cfg.Pinnum = PINSEL_PIN_10;
-    pin_cfg.Funcnum = PINSEL_FUNC_1; // Función alternativa 1 para EINT0
+    pin_cfg.Funcnum = PINSEL_FUNC_1;           // Función alternativa 1 para EINT0
     pin_cfg.Pinmode = PINSEL_PINMODE_PULLDOWN; // Resistencia pull-down
     pin_cfg.OpenDrain = PINSEL_PINMODE_NORMAL;
     PINSEL_ConfigPin(&pin_cfg);
 
     // Configuración de los pines para LEDs (verde y rojo)
     pin_cfg.Portnum = PINSEL_PORT_0;
-    pin_cfg.Pinnum = PINSEL_PIN_4; // LED verde
-    pin_cfg.Funcnum = PINSEL_FUNC_0; // Función GPIO
+    pin_cfg.Pinnum = PINSEL_PIN_4;             // LED verde
+    pin_cfg.Funcnum = PINSEL_FUNC_0;           // Función GPIO
     pin_cfg.Pinmode = PINSEL_PINMODE_PULLDOWN; // Resistencia pull-down
     pin_cfg.OpenDrain = PINSEL_PINMODE_NORMAL;
     PINSEL_ConfigPin(&pin_cfg);
@@ -65,4 +66,3 @@ void configure_port(void) {
     pin_cfg.Funcnum = PINSEL_FUNC_2; // DAC
     PINSEL_ConfigPin(&pin_cfg);
 }
-

@@ -3,7 +3,7 @@
 volatile uint32_t table[NUM_SAMPLES] = {1000, 700, 400, 0};
 
 volatile uint32_t adc_read_value = 0; ///< Último valor leído del ADC.
-//volatile uint8_t reverse_flag = 1;    ///< Indica el modo de operación: 1 (reversa) o 0 (normal).
+// volatile uint8_t reverse_flag = 1;    ///< Indica el modo de operación: 1 (reversa) o 0 (normal).
 
 /**
  * @brief Configura el temporizador y su coincidencia (match).
@@ -17,18 +17,18 @@ void configure_timer_and_match(void)
     TIM_TIMERCFG_Type timer_cfg_struct; /**< Estructura para almacenar la configuración del temporizador */
 
     timer_cfg_struct.PrescaleOption = TIM_PRESCALE_USVAL; /**< Prescaler en microsegundos */
-    timer_cfg_struct.PrescaleValue = 100; /**< Valor del prescaler, resolución de tiempo ~1.01 µs */
+    timer_cfg_struct.PrescaleValue = 100;                 /**< Valor del prescaler, resolución de tiempo ~1.01 µs */
 
     TIM_Init(LPC_TIM0, TIM_TIMER_MODE, &timer_cfg_struct); /**< Inicializa el temporizador TIMER0 */
 
     TIM_MATCHCFG_Type match_cfg_struct; /**< Estructura para almacenar la configuración de la coincidencia (match) */
 
-    match_cfg_struct.MatchChannel = 0; /**< Canal de coincidencia 0 */
-    match_cfg_struct.IntOnMatch = ENABLE; /**< Habilita la interrupción en coincidencia */
-    match_cfg_struct.StopOnMatch = DISABLE; /**< No detiene el temporizador en coincidencia */
-    match_cfg_struct.ResetOnMatch = ENABLE; /**< Reinicia el temporizador en coincidencia */
+    match_cfg_struct.MatchChannel = 0;                          /**< Canal de coincidencia 0 */
+    match_cfg_struct.IntOnMatch = ENABLE;                       /**< Habilita la interrupción en coincidencia */
+    match_cfg_struct.StopOnMatch = DISABLE;                     /**< No detiene el temporizador en coincidencia */
+    match_cfg_struct.ResetOnMatch = ENABLE;                     /**< Reinicia el temporizador en coincidencia */
     match_cfg_struct.ExtMatchOutputType = TIM_EXTMATCH_NOTHING; /**< Sin salida de coincidencia externa */
-    match_cfg_struct.MatchValue = (uint32_t)(SECOND); /**< Valor de coincidencia para 60 segundos */
+    match_cfg_struct.MatchValue = (uint32_t)(SECOND);           /**< Valor de coincidencia para 60 segundos */
 
     TIM_ConfigMatch(LPC_TIM0, &match_cfg_struct); /**< Configura la coincidencia */
 }
@@ -40,7 +40,7 @@ void configure_timer_and_match(void)
  */
 void start_timer(void)
 {
-    TIM_Cmd(LPC_TIM0, ENABLE); /**< Habilita el temporizador */
+    TIM_Cmd(LPC_TIM0, ENABLE);   /**< Habilita el temporizador */
     NVIC_EnableIRQ(TIMER0_IRQn); /**< Habilita la interrupción para TIMER0 */
 }
 
@@ -51,12 +51,13 @@ void start_timer(void)
  * canal 0 del ADC con interrupción.
  */
 
-void configure_adc(void) {
-    ADC_Init(LPC_ADC, ADC_FREQ); // Frecuencia de 100 kHz
+void configure_adc(void)
+{
+    ADC_Init(LPC_ADC, ADC_FREQ);                    // Frecuencia de 100 kHz
     ADC_ChannelCmd(LPC_ADC, ADC_CHANNEL_0, ENABLE); // Activar canal 0
-    ADC_BurstCmd(LPC_ADC, DISABLE); // Desactivar modo ráfaga
-    ADC_IntConfig(LPC_ADC, ADC_CHANNEL_0, ENABLE); // Interrupción en canal 0
-    NVIC_EnableIRQ(ADC_IRQn); // Habilitar interrupción del ADC
+    ADC_BurstCmd(LPC_ADC, DISABLE);                 // Desactivar modo ráfaga
+    ADC_IntConfig(LPC_ADC, ADC_CHANNEL_0, ENABLE);  // Interrupción en canal 0
+    NVIC_EnableIRQ(ADC_IRQn);                       // Habilitar interrupción del ADC
 }
 
 /**
@@ -68,7 +69,7 @@ void configure_adc(void) {
 void TIMER0_IRQHandler()
 {
     TIM_ClearIntPending(LPC_TIM0, TIM_MR0_INT); /**< Limpia el flag de interrupción */
-    ADC_StartCmd(LPC_ADC, ADC_START_NOW); /**< Inicia la conversión del ADC */
+    ADC_StartCmd(LPC_ADC, ADC_START_NOW);       /**< Inicia la conversión del ADC */
 }
 
 /**
@@ -95,26 +96,31 @@ void ADC_IRQHandler()
  */
 void continue_reverse(void)
 {
-    if(adc_read_value<MAX_APROXIMACION_PERMITIDA){
+    if (adc_read_value < MAX_APROXIMACION_PERMITIDA)
+    {
         reverse_flag = TRUE;
-    } else {
+    }
+    else
+    {
         reverse_flag = FALSE;
     }
 }
 
 void swap_table(volatile uint32_t* table)
-{   
-    for (uint32_t i = 0; i < NUM_SAMPLES/2; i++)
+{
+    for (uint32_t i = 0; i < NUM_SAMPLES / 2; i++)
     {
         table[i] = 1;
     }
-    for (uint32_t i = NUM_SAMPLES/2; i < NUM_SAMPLES; i++)
+    for (uint32_t i = NUM_SAMPLES / 2; i < NUM_SAMPLES; i++)
     {
-        if(reverse_flag){
+        if (reverse_flag)
+        {
             table[i] = 0;
-        } else {
+        }
+        else
+        {
             table[i] = 1;
         }
     }
 }
-

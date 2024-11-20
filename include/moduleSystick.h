@@ -1,14 +1,14 @@
 #ifndef SYSTICK_H
 #define SYSTICK_H
 
-#include "lpc17xx_systick.h"
-#include "lpc17xx_gpio.h"
-#include <stdint.h>
-#include <stddef.h>
 #include "lpc17xx_dac.h"
-#include "moduleUART.h"
-#include "modulePort.h"
+#include "lpc17xx_gpio.h"
+#include "lpc17xx_systick.h"
 #include "moduleDAC.h"
+#include "modulePort.h"
+#include "moduleUART.h"
+#include <stddef.h>
+#include <stdint.h>
 
 /**
  * @file systick.h
@@ -23,19 +23,19 @@
 
 /** Contadores de cambio de estado de los LEDs */
 #define MAX_GREEN_LED_COUNTER 10
-#define MAX_RED_LED_COUNTER 10
-#define MAX_TOGGLE 1
+#define MAX_RED_LED_COUNTER   10
+#define MAX_TOGGLE            1
 
 /** Definiciones de pines GPIO */
 #define GREEN_LED_PIN ((uint32_t)(1 << 4))
-#define RED_LED_PIN ((uint32_t)(1 << 5))
+#define RED_LED_PIN   ((uint32_t)(1 << 5))
 
 /** Variables globales del SysTick */
-extern volatile uint32_t systick_counter; ///< Contador global del SysTick
-extern volatile uint16_t red_led_counter; ///< Contador para el cambio del LED rojo
+extern volatile uint32_t systick_counter;   ///< Contador global del SysTick
+extern volatile uint16_t red_led_counter;   ///< Contador para el cambio del LED rojo
 extern volatile uint16_t green_led_counter; ///< Contador para el cambio del LED verde
-extern volatile uint8_t toggle; ///< Variable de estado de alternancia
-extern volatile uint8_t reverse_flag; ///< Bandera de modo reversa
+extern volatile uint8_t toggle;             ///< Variable de estado de alternancia
+extern volatile uint8_t reverse_flag;       ///< Bandera de modo reversa
 
 /**
  * @brief Configura el temporizador SysTick.
@@ -51,7 +51,7 @@ void configure_systick(void);
  * Maneja las tareas periódicas, como el cambio de estado de los LEDs y la transmisión de datos por UART.
  * Limpia la bandera de interrupción del SysTick al finalizar.
  */
-//void SysTick_Handler(void);
+// void SysTick_Handler(void);
 
 /**
  * @brief Cambia el estado del LED verde.
@@ -70,4 +70,3 @@ void green_led(void);
 void red_led(void);
 
 #endif // SYSTICK_H
-
