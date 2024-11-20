@@ -28,48 +28,47 @@ void configure_port(void)
     PINSEL_CFG_Type pin_cfg;
 
     // Configuración del pin para EINT0 (Interrupción externa 0)
-    pin_cfg.Portnum = PINSEL_PORT_2;  /**< Puerto donde se configura el pin */
-    pin_cfg.Pinnum = PINSEL_PIN_10;   /**< Pin específico para EINT0 */
-    pin_cfg.Funcnum = PINSEL_FUNC_1;  /**< Función alternativa 1 para EINT0 */
+    pin_cfg.Portnum = PINSEL_PORT_2;           /**< Puerto donde se configura el pin */
+    pin_cfg.Pinnum = PINSEL_PIN_10;            /**< Pin específico para EINT0 */
+    pin_cfg.Funcnum = PINSEL_FUNC_1;           /**< Función alternativa 1 para EINT0 */
     pin_cfg.Pinmode = PINSEL_PINMODE_PULLDOWN; /**< Resistencia pull-down */
     pin_cfg.OpenDrain = PINSEL_PINMODE_NORMAL; /**< Modo normal */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin según la configuración proporcionada */
+    PINSEL_ConfigPin(&pin_cfg);                /**< Configura el pin según la configuración proporcionada */
 
     // Configuración de los pines para LEDs (verde y rojo)
-    pin_cfg.Portnum = PINSEL_PORT_0;  /**< Puerto de los LEDs */
-    pin_cfg.Pinnum = PINSEL_PIN_4;    /**< Pin para el LED verde */
-    pin_cfg.Funcnum = PINSEL_FUNC_0;  /**< Función GPIO */
+    pin_cfg.Portnum = PINSEL_PORT_0;           /**< Puerto de los LEDs */
+    pin_cfg.Pinnum = PINSEL_PIN_4;             /**< Pin para el LED verde */
+    pin_cfg.Funcnum = PINSEL_FUNC_0;           /**< Función GPIO */
     pin_cfg.Pinmode = PINSEL_PINMODE_PULLDOWN; /**< Resistencia pull-down */
     pin_cfg.OpenDrain = PINSEL_PINMODE_NORMAL; /**< Modo normal */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para el LED verde */
+    PINSEL_ConfigPin(&pin_cfg);                /**< Configura el pin para el LED verde */
 
-    pin_cfg.Pinnum = PINSEL_PIN_5;    /**< Pin para el LED rojo */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para el LED rojo */
+    pin_cfg.Pinnum = PINSEL_PIN_5; /**< Pin para el LED rojo */
+    PINSEL_ConfigPin(&pin_cfg);    /**< Configura el pin para el LED rojo */
 
     GPIO_SetDir(PINSEL_PORT_0, GREEN_LED_PIN, OUTPUT); /**< Configura el pin del LED verde como salida */
     GPIO_SetDir(PINSEL_PORT_0, RED_LED_PIN, OUTPUT);   /**< Configura el pin del LED rojo como salida */
 
     // Configuración del pin UART0 TX (P0.2)
-    pin_cfg.Pinnum = PINSEL_PIN_2;    /**< Pin para UART TX */
-    pin_cfg.Funcnum = PINSEL_FUNC_1;  /**< Función UART TX */
+    pin_cfg.Pinnum = PINSEL_PIN_2;             /**< Pin para UART TX */
+    pin_cfg.Funcnum = PINSEL_FUNC_1;           /**< Función UART TX */
     pin_cfg.Pinmode = PINSEL_PINMODE_TRISTATE; /**< Modo tristate */
     pin_cfg.OpenDrain = PINSEL_PINMODE_NORMAL; /**< Modo normal */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para UART TX */
+    PINSEL_ConfigPin(&pin_cfg);                /**< Configura el pin para UART TX */
 
     // Configuración del pin UART0 RX (P0.3)
-    pin_cfg.Pinnum = PINSEL_PIN_3;    /**< Pin para UART RX */
-    pin_cfg.Funcnum = PINSEL_FUNC_1;  /**< Función UART RX */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para UART RX */
+    pin_cfg.Pinnum = PINSEL_PIN_3;   /**< Pin para UART RX */
+    pin_cfg.Funcnum = PINSEL_FUNC_1; /**< Función UART RX */
+    PINSEL_ConfigPin(&pin_cfg);      /**< Configura el pin para UART RX */
 
     // Configuración del pin ADC (P0.23)
-    pin_cfg.Pinnum = PINSEL_PIN_23;   /**< Pin para ADC */
-    pin_cfg.Funcnum = PINSEL_FUNC_1;  /**< Función ADC */
+    pin_cfg.Pinnum = PINSEL_PIN_23;            /**< Pin para ADC */
+    pin_cfg.Funcnum = PINSEL_FUNC_1;           /**< Función ADC */
     pin_cfg.Pinmode = PINSEL_PINMODE_TRISTATE; /**< Modo tristate */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para ADC */
+    PINSEL_ConfigPin(&pin_cfg);                /**< Configura el pin para ADC */
 
     // Configuración del pin DAC (P0.26)
-    pin_cfg.Pinnum = PINSEL_PIN_26;   /**< Pin para DAC */
-    pin_cfg.Funcnum = PINSEL_FUNC_2;  /**< Función DAC */
-    PINSEL_ConfigPin(&pin_cfg); /**< Configura el pin para DAC */
+    pin_cfg.Pinnum = PINSEL_PIN_26;  /**< Pin para DAC */
+    pin_cfg.Funcnum = PINSEL_FUNC_2; /**< Función DAC */
+    PINSEL_ConfigPin(&pin_cfg);      /**< Configura el pin para DAC */
 }
-

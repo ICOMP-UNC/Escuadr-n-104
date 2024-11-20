@@ -1,13 +1,13 @@
 #ifndef MODULEADC_H
 #define MODULEADC_H
 
-#include "moduleDAC.h"
 #include "lpc17xx_adc.h"
-#include "lpc17xx_timer.h"
 #include "lpc17xx_nvic.h"
-#include <stdint.h>
-#include <stddef.h>
+#include "lpc17xx_timer.h"
+#include "moduleDAC.h"
 #include "moduleSystick.h"
+#include <stddef.h>
+#include <stdint.h>
 
 /**
  * @file moduleADC.h
@@ -22,11 +22,11 @@
  * @brief Constantes y definiciones relacionadas con la configuración del ADC.
  * @{
  */
-#define SECOND 10000                     ///< Número de ciclos para un segundo en el temporizador.
-#define ADC_FREQ 100000                  ///< Frecuencia de muestreo del ADC en Hz.
-#define MAX_APROXIMACION_PERMITIDA 2048  ///< Valor máximo permitido en el ADC para la lógica del sistema.
-#define NUM_SAMPLES 4                    ///< Número de muestras utilizadas en la tabla.
-/** @} */ // End of ADC_Constants
+#define SECOND                     10000  ///< Número de ciclos para un segundo en el temporizador.
+#define ADC_FREQ                   100000 ///< Frecuencia de muestreo del ADC en Hz.
+#define MAX_APROXIMACION_PERMITIDA 2048   ///< Valor máximo permitido en el ADC para la lógica del sistema.
+#define NUM_SAMPLES                4      ///< Número de muestras utilizadas en la tabla.
+/** @} */                                 // End of ADC_Constants
 
 /// Tabla de valores utilizada en el procesamiento del sistema.
 extern volatile uint32_t table[NUM_SAMPLES];
@@ -34,7 +34,7 @@ extern volatile uint32_t table[NUM_SAMPLES];
 /// Último valor leído del ADC.
 extern volatile uint32_t adc_read_value;
 
-//extern volatile uint8_t reverse_flag; ///< Indica el modo de operación: 1 (reversa) o 0 (normal).
+// extern volatile uint8_t reverse_flag; ///< Indica el modo de operación: 1 (reversa) o 0 (normal).
 
 /**
  * @brief Configura el temporizador y el sistema de coincidencias para el ADC.
