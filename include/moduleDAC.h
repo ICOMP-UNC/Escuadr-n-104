@@ -63,10 +63,16 @@ void configure_dac(void);
  * Configura el DMA para realizar transferencias continuas desde una tabla
  * de datos que contiene muestras de la onda hacia el registro del DAC.
  *
- * @param[in] table Puntero a la tabla de muestras de la onda.
+ * @param table Puntero a la tabla de muestras de la onda.
  */
 void configure_dma_for_dac(volatile uint32_t* table);
 
+/**
+ * @brief Actualiza los datos a convertir por el DAC.
+ *
+ *
+ * @param dac_value Puntero a los valores del dac a actualizar.
+ */
 void actualizar_dac(volatile uint32_t* dac_value);
 
 #endif /* MODULE_DAC_H */

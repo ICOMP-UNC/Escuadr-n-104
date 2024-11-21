@@ -36,7 +36,6 @@ void configure_dac(void)
  * de datos a través del canal del DAC, utilizando una estructura de lista
  * enlazada para transferencia continua.
  *
- * @param[in] table Puntero a la tabla de datos que contiene las muestras de la onda.
  */
 void configure_dma_for_dac(volatile uint32_t* table)
 {
@@ -70,6 +69,11 @@ void configure_dma_for_dac(volatile uint32_t* table)
     // Aplicar la configuración del DMA
     GPDMA_Setup(&GPDMACfg);
 }
+
+/**
+ * @brief Actualiza los datos a convertir por el DAC.
+ *
+ */
 void actualizar_dac(volatile uint32_t* dac_value)
 {
     dac_counter++;

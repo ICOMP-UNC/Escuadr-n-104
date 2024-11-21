@@ -21,14 +21,20 @@
 /** Periodo del SysTick en milisegundos */
 #define SYSTICK_TIME 50
 
-/** Contadores de cambio de estado de los LEDs */
+/** Maximo valor para contador del Led verde */
 #define MAX_GREEN_LED_COUNTER 10
-#define MAX_RED_LED_COUNTER   10
-#define MAX_TOGGLE            1
+
+/** Maximo valor para contador del Led rojo */
+#define MAX_RED_LED_COUNTER 10
+
+/** Maxima cantidad de toggle */
+#define MAX_TOGGLE 1
 
 /** Definiciones de pines GPIO */
 #define GREEN_LED_PIN ((uint32_t)(1 << 4))
-#define RED_LED_PIN   ((uint32_t)(1 << 5))
+
+/** Definiciones de pines GPIO */
+#define RED_LED_PIN ((uint32_t)(1 << 5))
 
 /** Variables globales del SysTick */
 extern volatile uint32_t systick_counter;   ///< Contador global del SysTick
