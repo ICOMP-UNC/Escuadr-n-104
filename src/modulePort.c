@@ -1,7 +1,7 @@
 #include "modulePort.h"
 
 /**
- * @file moduleport.c
+ * @file modulePort.c
  * @brief Implementación de la configuración de pines y puertos GPIO.
  *
  * Este archivo contiene la lógica para inicializar y configurar los pines

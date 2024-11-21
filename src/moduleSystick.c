@@ -1,7 +1,7 @@
 #include "moduleSystick.h"
 
 /**
- * @file systick.c
+ * @file moduleSystick.c
  * @brief Implementación de la configuración y manejo del SysTick.
  *
  * Este archivo contiene la configuración del temporizador SysTick y el manejador

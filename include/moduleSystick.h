@@ -11,7 +11,7 @@
 #include <stdint.h>
 
 /**
- * @file systick.h
+ * @file moduleSystick.h
  * @brief Archivo de cabecera para la configuración y manejo del SysTick.
  *
  * Este módulo proporciona funcionalidades para configurar y manejar el temporizador SysTick

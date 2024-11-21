@@ -24,13 +24,31 @@
 #define WAVE_FREQUENCY 60 /**< Frecuencia de la onda senoidal: 60 Hz */
 #define CLOCK_DAC_MHZ  25 /**< Frecuencia del reloj del DAC: 25 MHz (CCLK dividido por 4) */
 
+/**
+ * @brief Valores para el dac por dma.
+ *
+ */
 extern volatile uint32_t dac_value[NUM_SAMPLES];
+
+/**
+ * @brief Valores para el dac por dma si reverse_flag = TRUE.
+ *
+ */
 extern volatile uint32_t dac_value1[NUM_SAMPLES];
+
+/**
+ * @brief Valores para el dac por dma si reverse_flag = FALSE.
+ *
+ */
 extern volatile uint32_t dac_value2[NUM_SAMPLES];
+
+/**
+ * @brief Contador para el dac.
+ *
+ */
 extern volatile uint32_t dac_counter;
 
 #define CHANNEL_DMA_DAC 0 /**< Canal DMA usado para el DAC */
-/** @} */
 
 /**
  * @brief Configura el DAC para generar una onda periódica.

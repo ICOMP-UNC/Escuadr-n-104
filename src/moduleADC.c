@@ -111,7 +111,6 @@ void continue_reverse(void)
  * Reconfigura la tabla `table` basada en el valor de la bandera `reverse_flag`.
  * Si está activa, modifica los valores de la tabla para reflejar el modo inverso.
  *
- * @param table Puntero a la tabla a actualizar.
  */
 void swap_table(volatile uint32_t* table)
 {
