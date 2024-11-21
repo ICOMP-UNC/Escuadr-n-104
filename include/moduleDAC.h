@@ -17,7 +17,7 @@
 #include "moduleSystick.h"
 /** @defgroup Configuración del DAC y DMA
  *  Constantes y definiciones relacionadas con la configuración del DAC y DMA.
- *  @{
+ *
  */
 #define DMA_SIZE       60 /**< Tamaño de la transferencia DMA en muestras */
 #define NUM_SAMPLES    4  /**< Total de muestras para la onda completa */
