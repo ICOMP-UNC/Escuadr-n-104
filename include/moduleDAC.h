@@ -75,4 +75,4 @@ void configure_dma_for_dac(volatile uint32_t* table);
  */
 void actualizar_dac(volatile uint32_t* dac_value);
 
-#endif /* MODULE_DAC_H */
+#endif
