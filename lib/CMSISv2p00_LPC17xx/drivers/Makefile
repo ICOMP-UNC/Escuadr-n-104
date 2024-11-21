@@ -8,11 +8,11 @@ AR = arm-none-eabi-ar
 
 # vpath directive specifies the search path for source files.
 # It tells make to look for .c files in the Src directory.
-vpath %.c src 
+vpath %.c src
 
 # TARGET: Defines the name of the output file, which in this case is a static library named liblpcdriver.a.
 TARGET = liblpcdriver.a
- 
+
 # Compiler Flags
 # CFLAGS: Basic flags for compiling C files.
 CFLAGS = -g -O2 -Wall
@@ -32,7 +32,7 @@ CFLAGS = -g -O2 -Wall
 # -fmessage-length=0: Controls the length of error messages produced by the compiler.
 # -funsigned-char: Treats `char` as `unsigned char`.
 CFLAGS += -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))"
-CFLAGS += -D PACK_STRUCT_END=__attribute\(\(packed\)\) 
+CFLAGS += -D PACK_STRUCT_END=__attribute\(\(packed\)\)
 CFLAGS += -D ALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\)	
 CFLAGS += -D__USE_CMSIS
 CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m3 -mthumb-interwork
@@ -46,18 +46,25 @@ CFLAGS += -I../../../include/
 
 # SRCS: Lists all the source files to be compiled into object files.
 SRCS = lpc17xx_libcfg_default.c \
-	 lpc17xx_pinsel.c	\
+	 lpc17xx_pinsel.c \
 	 lpc17xx_gpio.c \
 	 lpc17xx_uart.c \
 	 lpc17xx_i2c.c \
 	 lpc17xx_spi.c \
+	 lpc17xx_adc.c \
+	 lpc17xx_dac.c \
+	 lpc17xx_exti.c \
+	 lpc17xx_gpdma.c \
+	 lpc17xx_nvic.c \
+	 lpc17xx_systick.c \
+	 lpc17xx_timer.c \
 	 lpc17xx_clkpwr.c
 
 # OBJS: Converts each source file name (.c) into its corresponding object file name (.o).
 OBJS = $(SRCS:.c=.o)
 
 # .PHONY: Declares targets that don't represent actual files to avoid conflicts.
-.PHONY: $(TARGET)
+.PHONY: $(TARGET) all clean
 
 # Default target: Builds the static library.
 all: $(TARGET)

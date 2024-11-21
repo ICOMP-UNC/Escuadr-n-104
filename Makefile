@@ -5,9 +5,15 @@
 # We define the source files that will be compiled and linked into the final binary.
 # Add all the source files here, ending with \ to continue on the next line.
 SRCS =	newlib_stubs.c \
-		main.c
- 
-	 
+		system_LPC17xx.c \
+		moduleADC.c \
+		moduleDAC.c \
+		moduleEINT.c \
+		modulePort.c \
+		moduleSystick.c \
+		main.c \
+		moduleUART.c
+		
 # Define the name of the project
 # This will be the name of the final binary file
 

@@ -141,7 +141,7 @@ is VALUE/1024 � VREF */
 }
 #endif
 
-#endif 
+#endif /**LPC17XX_DAC_H_ **/
 
 /**
  * @}
