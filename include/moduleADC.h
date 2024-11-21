@@ -83,13 +83,13 @@ void continue_reverse(void);
 /**
  * @brief Actualiza los valores en la tabla según el modo de operación.
  *
- * Esta función modifica los valores de la tabla `table` en función de la bandera global `reverse_flag`. 
+ * Esta función modifica los valores de la tabla `table` en función de la bandera global `reverse_flag`.
  * Si `reverse_flag` está activa, la tabla se invierte; de lo contrario, permanece sin cambios.
  *
- * @param table Puntero a un arreglo de 32 bits que se actualizará. 
+ * @param table Puntero a un arreglo de 32 bits que se actualizará.
  *              Este puntero debe apuntar a una tabla válida previamente inicializada.
  *
- * @note La función no verifica el tamaño de la tabla ni la validez del puntero, 
+ * @note La función no verifica el tamaño de la tabla ni la validez del puntero,
  *       por lo que es responsabilidad del usuario garantizar que estos sean correctos.
  */
 void swap_table(volatile uint32_t* table);
